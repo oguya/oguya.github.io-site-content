@@ -1,0 +1,18 @@
+baseurl = "https://oguya.ch/"
+languageCode = "en-us"
+title = "James Oguya"
+theme = "vienna"
+Paginate = 5
+# Copyright notice. This is displayer in the footer.
+#copyright = "&copy; Copyright notice"
+
+[params]
+disqus = "oguya"
+github = "oguya"
+twitter = "oguyajames"
+googleplus = "JamesOguya"
+#keybase = "jamesoguya"
+#author = "James Oguya"
+#avatar = "/images/favicon-96x96.png"
+contact = "mailto:oguyajames@gmail.com"
+subtitle = "Linux nuggets"
