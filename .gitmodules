@@ -1,3 +1,6 @@
 [submodule "themes/vienna"]
 	path = themes/vienna
 	url = git@github.com:keichi/vienna.git
+[submodule "public"]
+	path = public
+	url = git@github.com:oguya/oguya.github.io.git
