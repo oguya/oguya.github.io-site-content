@@ -7,7 +7,6 @@ tags:
 - centos
 - linux
 title: "Yum/DNF Keep Old Packages"
-url: "linux/2015/06/06/yum-dnf-keep-old-packages"
 ---
 
 When you upgrade packages on RedHat based systems, the newer package replaces the older one except for _install only_ packages e.g. kernel packages.
@@ -23,4 +22,3 @@ To keep all older kernel packages forever, set `installonly_limit` to **0** i.e.
 ```ini
 installonly_limit=0
 ```
-

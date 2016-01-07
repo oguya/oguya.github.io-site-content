@@ -6,7 +6,6 @@ tags:
 - ansible
 - audit
 title: "Deploying CIS Benchmarks on Ubuntu 14.04 hosts using Ansible"
-url: "linux/2015/08/16/ansible-cis-benchmarks-ubuntu"
 ---
 
 Center for Internet Security(CIS) provides well-defined, unbiased & consensus-based industry best practices to help organizations assess and improve their security. In this blog post, we'll talk about these benchmarks & how you can deploy most, if not all, on your Ubuntu 14.04 box.

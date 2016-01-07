@@ -3,7 +3,6 @@ date: '2014-12-18'
 tags:
 - ansible
 title: "Ansible 'Prompt' handlers"
-url: "linux/2014/12/18/ansible-prompt-handlers"
 ---
 
 An awesome feature in  that is not available in [Ansible](http://ansible.com) is immediate notification i.e. `notifies :immediately`.

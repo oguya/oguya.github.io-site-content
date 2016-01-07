@@ -4,7 +4,6 @@ tags:
 - ansible
 - linux
 title: "Rebooting server(s) using Ansible"
-url: "linux/2015/02/22/ansible-reboot-servers"
 ---
 
 Ansible provides useful tools which we can use to for various purposes. In this blog post, we'll talk about rebooting servers using ansible & pausing the playbook by waiting for a given amount of time for a given service on a given port to start.

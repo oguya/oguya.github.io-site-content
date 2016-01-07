@@ -4,7 +4,6 @@ tags:
 - fedora
 - linux
 title: "Upgrading Fedora 22 to 23 using DNF"
-url: "linux/2015/12/02/upgrading-fedora"
 ---
 This is a short & simple guide for upgrading Fedora 22 to Fedora 23 using DNF
 <!--more-->

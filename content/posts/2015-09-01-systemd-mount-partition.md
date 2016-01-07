@@ -4,7 +4,6 @@ tags:
 - systemd
 - linux
 title: "Mounting Partitions Using Systemd"
-url: "linux/2015/09/01/systemd-mount-partition"
 ---
 
 Recently, I discovered you can mount partitions using systemd.mount by writing a mount unit file. In this blog post, we''ll talk about systemd.mount & how you can use it to mount partitions.

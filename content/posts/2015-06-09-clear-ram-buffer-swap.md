@@ -5,7 +5,6 @@ tags:
 - swap
 - linux
 title: "Clear RAM Memory Cache, Buffer & Swap Space"
-url: "linux/2015/06/09/clear-ram-buffer-swap"
 ---
 
 GNU Linux has implemented efficient memory management algorithms & tools which gives you the power & flexibility to control both the physical & virtual memory on your system.

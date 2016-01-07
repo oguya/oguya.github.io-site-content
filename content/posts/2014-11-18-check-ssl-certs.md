@@ -4,7 +4,6 @@ tags:
 - linux
 - openssl
 title: Validity of SSL Certificates
-url: "linux/2014/11/18/check-ssl-certs"
 ---
 
 OpenSSL provides several options for implementing SSL & TLS network protocols that you can use to securely communicate with a server. In this blog post, we'll turn our attention to SSL certificates & the priceless information they contain.
@@ -202,4 +201,3 @@ For me, a simple cron job does the trick, every 2weeks it checks the validity of
 1. [A bit of history on X.509](http://en.wikipedia.org/wiki/X.509)
 2. [openssl s_client man pages](https://www.openssl.org/docs/apps/s_client.html)
 3. [openssl x.509 man pages](https://www.openssl.org/docs/apps/x509.html)
-

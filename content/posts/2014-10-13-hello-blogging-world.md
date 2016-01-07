@@ -2,8 +2,8 @@
 date: '2014-10-13'
 tags:
 - hello-world
+- linux
 title: Hello blogging world :)
-url: "linux/2014/10/13/hello-blogging-world"
 ---
 
 so after several months—if not years—of procrastinating whether I should or should not blog, I've finally decided to leave my comfort zone and face
