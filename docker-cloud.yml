@@ -1,0 +1,4 @@
+web:
+  image: 'oguya/oguya.github.io-site-content:latest'
+  ports:
+    - '1313'
