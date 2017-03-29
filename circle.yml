@@ -19,9 +19,13 @@ test:
 #    - sed -i "s/PUT_YOUR_BRANCH_TAG_HERE/$CIRCLE_BRANCH/;s/PUT_RANDOM_PORT_HERE://" docker-cloud.yml
 
 deployment:
-staging:
-  production:
-    branch: master
-    commands:
-      - ./docker-deploy.sh
-      - docker-cloud stack create --name=${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7} -f docker-cloud.yml && docker-cloud stack start ${DOCKERCLOUD_STACK}
+  environment:
+    DOCKERCLOUD_USER: "oguya"
+    DOCKERCLOUD_APIKEY: "82dd9ee8-f533-4c1b-a4ad-5261462cc2a6"
+    DOCKERCLOUD_STACK: "${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}"
+  staging:
+    production:
+      branch: master
+      commands:
+        - ./docker-deploy.sh
+        - docker-cloud stack create --name=${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7} -f docker-cloud.yml && docker-cloud stack start ${DOCKERCLOUD_STACK}
