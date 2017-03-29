@@ -5,6 +5,7 @@ machine:
     HUGO_BASE_URL: "http://0.0.0.0:1313"
     HUGO_BIN_URL: "https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz"
   pre:
+    - env
     - sudo apt-get update; sudo apt-get install -yy --no-install-recommends wget
     - wget --no-check-certificate $HUGO_BIN_URL -O hugo.tar.gz
     - tar -xvf hugo.tar.gz
