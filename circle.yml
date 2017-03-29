@@ -22,9 +22,9 @@ test:
   post:
       - cd ~/oguya.github.io-site-content
       - >
-        author=$(git log -n1 --format=%an ${CIRCLE_SHA1} | sed 's/[ |.]/-/' | tr '[:upper:]' '[:lower:]')
-        stack_name="${CIRCLE_PROJECT_REPONAME//./-}-${author}-${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}"
-        echo $author $stack_name
+        export author=$(git log -n1 --format=%an ${CIRCLE_SHA1} | sed 's/[ |.]/-/' | tr '[:upper:]' '[:lower:]');
+        export stack_name="${CIRCLE_PROJECT_REPONAME//./-}-${author}-${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}";
+        docker-cloud stack create --name=${stack_name} -f docker-cloud.yml
         #docker-cloud stack create --name=${stack_name} -f docker-cloud.yml && docker-cloud stack start ${stack_name}
 
 #  post:
