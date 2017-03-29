@@ -25,4 +25,4 @@ deployment:
     branch: master
     commands:
       - cd ~/oguya.github.io-site-content
-      - docker-cloud stack create --name=${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7} -f ~/oguya.github.io-site-content/docker-cloud.yml && docker-cloud stack start ${DOCKERCLOUD_STACK}
+      - docker-cloud stack create --name=${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7} -f docker-cloud.yml && docker-cloud stack start ${DOCKERCLOUD_STACK}
