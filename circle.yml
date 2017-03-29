@@ -2,6 +2,7 @@ machine:
   environment:
     HUGO_VERSION: "0.19"
     DOCKERCLOUD_STACK: "${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}"
+    HUGO_BASE_URL: "http://0.0.0.0:1313"
   pre:
     - wget -qO- https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz | tar xzv
     - sudo cp hugo_${HUGO_VERSION}_linux_amd64/hugo_${HUGO_VERSION}_linux_amd64 /bin/hugo
@@ -10,8 +11,6 @@ dependencies:
     - pip install docker-cloud
 
 test:
-  environment:
-    - HUGO_BASE_URL: "http://0.0.0.0:1313"
   override:
     - cd ~/oguya.github.io-site-content
     - hugo -d .
