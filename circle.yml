@@ -20,9 +20,7 @@ test:
 #    - sed -i "s/PUT_YOUR_BRANCH_TAG_HERE/$CIRCLE_BRANCH/;s/PUT_RANDOM_PORT_HERE://" docker-cloud.yml
 
 deployment:
-  staging:
-    production:
-      branch: master
-      commands:
-        - ./docker-deploy.sh
-        - docker-cloud stack create --name=${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7} -f docker-cloud.yml && docker-cloud stack start ${DOCKERCLOUD_STACK}
+  production:
+    branch: master
+    commands:
+      - docker-cloud stack create --name=${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7} -f docker-cloud.yml && docker-cloud stack start ${DOCKERCLOUD_STACK}
