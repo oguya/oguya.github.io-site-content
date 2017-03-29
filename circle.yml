@@ -21,7 +21,10 @@ test:
 ## deploy to docker-cloud branch staging
   post:
       - cd ~/oguya.github.io-site-content
-      - docker-cloud stack create --name=${DOCKERCLOUD_STACK} -f docker-cloud.yml && docker-cloud stack start ${DOCKERCLOUD_STACK}
+      - >
+        author=$(git log -n1 --format=%an ${CIRCLE_SHA1} | sed 's/[ |.]/-/' | tr '[:upper:]' '[:lower:]')
+        stack_name=${DOCKERCLOUD_STACK/AUTHOR/$author/"}
+      - docker-cloud stack create --name=${stack_name} -f docker-cloud.yml && docker-cloud stack start ${stack_name}
 
 #  post:
 #    - sed -i "s/PUT_YOUR_BRANCH_TAG_HERE/$CIRCLE_BRANCH/;s/PUT_RANDOM_PORT_HERE://" docker-cloud.yml
