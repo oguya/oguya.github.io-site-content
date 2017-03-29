@@ -24,7 +24,8 @@ test:
       - >
         author=$(git log -n1 --format=%an ${CIRCLE_SHA1} | sed 's/[ |.]/-/' | tr '[:upper:]' '[:lower:]')
         stack_name="${CIRCLE_PROJECT_REPONAME//./-}-${author}-${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}"
-        docker-cloud stack create --name=${stack_name} -f docker-cloud.yml && docker-cloud stack start ${stack_name}
+        echo $author $stack_name
+        #docker-cloud stack create --name=${stack_name} -f docker-cloud.yml && docker-cloud stack start ${stack_name}
 
 #  post:
 #    - sed -i "s/PUT_YOUR_BRANCH_TAG_HERE/$CIRCLE_BRANCH/;s/PUT_RANDOM_PORT_HERE://" docker-cloud.yml
