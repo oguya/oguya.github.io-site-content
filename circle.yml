@@ -4,7 +4,7 @@ machine:
     DOCKERCLOUD_STACK: "${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}"
     HUGO_BASE_URL: "http://0.0.0.0:1313"
   pre:
-    - apt-get update; apt-get install -yy --no-install-recommends wget
+    - sudo apt-get update; sudo apt-get install -yy --no-install-recommends wget
     - wget --no-check-certificate -qO- https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz | tar xzv
     - sudo cp hugo_${HUGO_VERSION}_linux_amd64/hugo_${HUGO_VERSION}_linux_amd64 /bin/hugo
 dependencies:
