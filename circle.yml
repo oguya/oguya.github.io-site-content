@@ -22,8 +22,8 @@ test:
 #    - sed -i "s/PUT_YOUR_BRANCH_TAG_HERE/$CIRCLE_BRANCH/;s/PUT_RANDOM_PORT_HERE://" docker-cloud.yml
 
 deployment:
-  production:
-    branch: master
+  staging:
+    branch: "${CIRCLE_BRANCH}"
     commands:
       - cd ~/oguya.github.io-site-content
       - docker-cloud stack create --name=${DOCKERCLOUD_STACK} -f docker-cloud.yml && docker-cloud stack start ${DOCKERCLOUD_STACK}
