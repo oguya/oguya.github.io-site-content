@@ -17,7 +17,11 @@ test:
     - cd ~/oguya.github.io-site-content
     - hugo -d .
 
-## deploy to docker-cloud branch staging
+## deploy each branch on different docker-cloud stack
+## stack naming syntax: repo_name-author-branch
+## add DOCKERCLOUD_APIKEY & DOCKERCLOUD_USER in Circle CI project settings in Web UI
+## NOTE: Circle can't infer $CIRCLE_BRANCH in deployment section; so use test::post for
+## for non-hardcoded branch names
   post:
       - cd ~/oguya.github.io-site-content
       - >
