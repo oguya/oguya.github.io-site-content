@@ -1,0 +1,29 @@
+machine:
+  environment:
+    HUGO_VERSION: "0.19"
+  pre:
+    - wget -qO- https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz | tar xzv
+    - sudo cp hugo_${HUGO_VERSION}_linux_amd64/hugo_${HUGO_VERSION}_linux_amd64 /bin/hugo
+dependencies:
+  pre:
+    - pip install docker-cloud
+
+test:
+  environment:
+    DOCKERCLOUD_USER: "oguya"
+    DOCKERCLOUD_APIKEY: "82dd9ee8-f533-4c1b-a4ad-5261462cc2a6"
+    DOCKERCLOUD_STACK: "${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}"
+  override:
+    - cd ~/oguya.github.io-site-content
+    - hugo -d .
+
+#  post:
+#    - sed -i "s/PUT_YOUR_BRANCH_TAG_HERE/$CIRCLE_BRANCH/;s/PUT_RANDOM_PORT_HERE://" docker-cloud.yml
+
+deployment:
+staging:
+  production:
+    branch: master
+    commands:
+      - ./docker-deploy.sh
+      - docker-cloud stack create --name=${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7} -f docker-cloud.yml && docker-cloud stack start ${DOCKERCLOUD_STACK}
