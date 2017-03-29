@@ -1,7 +1,7 @@
 machine:
   environment:
     HUGO_VERSION: "0.19"
-    DOCKERCLOUD_STACK: "${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}"
+    DOCKERCLOUD_STACK: "${CIRCLE_PROJECT_REPONAME//./-}-${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}"
     HUGO_BASE_URL: "http://0.0.0.0:1313"
     HUGO_BIN_URL: "https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz"
   post:
@@ -25,4 +25,4 @@ deployment:
     branch: master
     commands:
       - cd ~/oguya.github.io-site-content
-      - docker-cloud stack create --name=${CIRCLE_PROJECT_REPONAME//./-}-${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7} -f docker-cloud.yml && docker-cloud stack start ${DOCKERCLOUD_STACK}
+      - docker-cloud stack create --name=${DOCKERCLOUD_STACK} -f docker-cloud.yml && docker-cloud stack start ${DOCKERCLOUD_STACK}
