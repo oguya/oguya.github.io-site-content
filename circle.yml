@@ -24,9 +24,9 @@ test:
         export author=$(git log -n1 --format=%an ${CIRCLE_SHA1} | sed 's/[ |.]/-/' | tr '[:upper:]' '[:lower:]');
         #export stack_name="${CIRCLE_PROJECT_REPONAME//./-}-${author}-${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}";
         export stack_name="${CIRCLE_PROJECT_REPONAME//./-}-${author}-${CIRCLE_BRANCH}";
-        export check_stack=$(docker-cloud stack ls | grep -c ${stack_name});
-        if [[ $check_stack -eq 0 ]]; then docker-cloud stack create --name=${stack_name} -f docker-cloud.yml && docker-cloud stack start ${stack_name} else docker-cloud stack redeploy ${stack_name}; fi
-        #docker-cloud stack create --name=${stack_name} -f docker-cloud.yml && docker-cloud stack start ${stack_name}
+        #export check_stack=$(docker-cloud stack ls | grep -c ${stack_name});
+        #if [[ $check_stack -eq 0 ]]; then docker-cloud stack create --name=${stack_name} -f docker-cloud.yml && docker-cloud stack start ${stack_name} else docker-cloud stack redeploy ${stack_name}; fi
+        docker-cloud stack create --name=${stack_name} -f docker-cloud.yml && docker-cloud stack start ${stack_name} || docker-cloud stack redeploy ${stack_name}
 
 #deployment:
 #  production:
