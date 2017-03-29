@@ -5,10 +5,8 @@ machine:
     HUGO_BASE_URL: "http://0.0.0.0:1313"
     HUGO_BIN_URL: "https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz"
   post:
-    - echo $HUGO_BIN_URL
     - sudo apt-get update; sudo apt-get install -yy --no-install-recommends wget
-    - wget --no-check-certificate $HUGO_BIN_URL -O hugo.tar.gz
-    - tar -xvf hugo.tar.gz
+    - wget --no-check-certificate -qO- $HUGO_BIN_URL | tar zxv
     - sudo cp hugo_${HUGO_VERSION}_linux_amd64/hugo_${HUGO_VERSION}_linux_amd64 /bin/hugo
 dependencies:
   pre:
@@ -26,4 +24,5 @@ deployment:
   production:
     branch: master
     commands:
+      - cd ~/oguya.github.io-site-content
       - docker-cloud stack create --name=${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7} -f docker-cloud.yml && docker-cloud stack start ${DOCKERCLOUD_STACK}
