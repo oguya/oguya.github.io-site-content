@@ -1,10 +1,9 @@
 machine:
   environment:
     HUGO_VERSION: "0.19"
-    AUTHOR: $(git log -n1 --format=%an ${CIRCLE_SHA1} | sed 's/[ |.]/-/' | tr '[:upper:]' '[:lower:]')
-    DOCKERCLOUD_STACK: "${CIRCLE_PROJECT_REPONAME//./-}-${AUTHOR}-${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}"
     HUGO_BASE_URL: "http://0.0.0.0:1313"
     HUGO_BIN_URL: "https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz"
+## TODO: use caches instead of re-downloading hugo in every build
   post:
     - sudo apt-get update; sudo apt-get install -yy --no-install-recommends wget
     - wget --no-check-certificate -qO- $HUGO_BIN_URL | tar zxv
@@ -24,20 +23,11 @@ test:
       - >
         export author=$(git log -n1 --format=%an ${CIRCLE_SHA1} | sed 's/[ |.]/-/' | tr '[:upper:]' '[:lower:]');
         export stack_name="${CIRCLE_PROJECT_REPONAME//./-}-${author}-${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}";
-        docker-cloud stack create --name=${stack_name} -f docker-cloud.yml
-        #docker-cloud stack create --name=${stack_name} -f docker-cloud.yml && docker-cloud stack start ${stack_name}
+        docker-cloud stack create --name=${stack_name} -f docker-cloud.yml && docker-cloud stack start ${stack_name}
 
-#  post:
-#    - sed -i "s/PUT_YOUR_BRANCH_TAG_HERE/$CIRCLE_BRANCH/;s/PUT_RANDOM_PORT_HERE://" docker-cloud.yml
-
-deployment:
-  production:
-    branch: master
-    commands:
-      - cd ~/oguya.github.io-site-content
-      - docker-cloud stack create --name=${DOCKERCLOUD_STACK} -f docker-cloud.yml && docker-cloud stack start ${DOCKERCLOUD_STACK}
+#deployment:
 #  production:
-#    branch: "${CIRCLE_BRANCH}"
+#    branch: master
 #    commands:
 #      - cd ~/oguya.github.io-site-content
 #      - docker-cloud stack create --name=${DOCKERCLOUD_STACK} -f docker-cloud.yml && docker-cloud stack start ${DOCKERCLOUD_STACK}
