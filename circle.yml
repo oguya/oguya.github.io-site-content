@@ -10,9 +10,7 @@ dependencies:
 
 test:
   environment:
-    DOCKERCLOUD_USER: "oguya"
-    DOCKERCLOUD_APIKEY: "82dd9ee8-f533-4c1b-a4ad-5261462cc2a6"
-    DOCKERCLOUD_STACK: "${CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}"
+    - HUGO_BASE_URL: "http://0.0.0.0:1313"
   override:
     - cd ~/oguya.github.io-site-content
     - hugo -d .
