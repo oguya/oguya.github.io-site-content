@@ -22,7 +22,7 @@ test:
 #    - sed -i "s/PUT_YOUR_BRANCH_TAG_HERE/$CIRCLE_BRANCH/;s/PUT_RANDOM_PORT_HERE://" docker-cloud.yml
 
 deployment:
-  dev:
+  production:
     branch: "${CIRCLE_BRANCH}"
     commands:
       - cd ~/oguya.github.io-site-content
