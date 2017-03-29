@@ -23,7 +23,7 @@ test:
 
 deployment:
   production:
-    branch: "${CIRCLE_BRANCH}"
+    branch: ${CIRCLE_BRANCH}
     commands:
       - cd ~/oguya.github.io-site-content
       - docker-cloud stack create --name=${DOCKERCLOUD_STACK} -f docker-cloud.yml && docker-cloud stack start ${DOCKERCLOUD_STACK}
