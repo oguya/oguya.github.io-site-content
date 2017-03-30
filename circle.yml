@@ -27,7 +27,14 @@ test:
       - >
         export author=$(git log -n1 --format=%an ${CIRCLE_SHA1} | sed 's/[ |.]/-/' | tr '[:upper:]' '[:lower:]');
         export stack_name="${CIRCLE_PROJECT_REPONAME//./-}-${author}-${CIRCLE_BRANCH}";
-        docker-cloud stack create --name=${stack_name} -f docker-cloud.yml && docker-cloud stack start ${stack_name} || docker-cloud stack redeploy ${stack_name}
+        if [[ $check_stack -ne 0 ]]; then
+            echo "Redeploying the existing stack: ${stack_name}"
+            docker-cloud stack redeploy ${stack_name}
+        else
+            echo "Creating a new stack named: ${stack_name}"
+            docker-cloud stack create --name=${stack_name} -f docker-cloud.yml && docker-cloud stack start ${stack_name}
+        fi
+        #docker-cloud stack create --name=${stack_name} -f docker-cloud.yml && docker-cloud stack start ${stack_name} || docker-cloud stack redeploy ${stack_name}
 
 #deployment:
 #  production:
